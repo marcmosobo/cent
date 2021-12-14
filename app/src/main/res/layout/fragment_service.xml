@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ucsb"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    tools:context=".ServiceFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/grocery"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="63dp"
+                android:drawableTop="@drawable/ic_wifi"
+                android:text="Grocery"
+                android:theme="@style/Theme.MaterialComponents" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/food"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="25dp"
+                android:drawableTop="@drawable/ic_home"
+                android:text="Food"
+                android:theme="@style/Theme.MaterialComponents" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/poshomill"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="63dp"
+                android:drawableTop="@drawable/ic_wifi"
+                android:text="Mill"
+                android:theme="@style/Theme.MaterialComponents" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/gas"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="25dp"
+                android:drawableTop="@drawable/ic_wifi"
+                android:text="Gas"
+                android:theme="@style/Theme.MaterialComponents" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/cereal"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="63dp"
+                android:drawableTop="@drawable/ic_profile"
+                android:text="Cereals"
+                android:theme="@style/Theme.MaterialComponents" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/shop"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="25dp"
+                android:drawableTop="@drawable/ic_home"
+                android:text="Shops"
+                android:theme="@style/Theme.MaterialComponents" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
