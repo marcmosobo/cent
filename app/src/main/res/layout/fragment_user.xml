@@ -78,7 +78,7 @@
                 android:layout_height="110dp"
                 android:layout_marginLeft="63dp"
                 android:drawableTop="@drawable/ic_profile"
-                android:text="History"
+                android:text="Store"
                 android:theme="@style/Theme.MaterialComponents" />
 
             <android.support.design.button.MaterialButton
