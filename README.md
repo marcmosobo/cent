@@ -1,7 +1,7 @@
-# Juggler
+# Cent
 
 ![code size](https://img.shields.io/github/languages/code-size/git-akshat/mini-project?style=plastic)
-[![](https://img.shields.io/badge/author-Akshat%20Agarwal-green.svg?style=plastic)](https://github.com/git-akshat)
+<!-- [![](https://img.shields.io/badge/author-Akshat%20Agarwal-green.svg?style=plastic)](https://github.com/git-akshat) -->
 [![License](https://img.shields.io/github/license/git-akshat/mini-project?style=plastic&color=red)](https://github.com/git-akshat/mini-project/blob/master/LICENSE)
 
 
@@ -60,14 +60,14 @@ Cent is an android app for selling and buying of old goods within a college or i
 
 
 ## Demo
-[Download apk](https://github.com/git-akshat/mini-project/releases/download/v16.6.19-alpha/Juggler-v16.6.19.apk)
-
+<!-- [Download apk](https://github.com/git-akshat/mini-project/releases/download/v16.6.19-alpha/Juggler-v16.6.19.apk)
+ -->
 Auto-reply email and email-notifications are disabled. To enable it go to Config.java file and provide email id and password.
 
 Don't forget to provide these [permissions](https://github.com/git-akshat/mini-project/issues/1#issuecomment-612149057) in the firebase console.
 
 ## Developed by
-[`Akshat Agarwal`](https://github.com/git-marcmosobo)
+[`Marc Mosobo`](https://github.com/git-marcmosobo)
 
 ## MIT License
 Copyright (c) 2019 Marc Mosobo
