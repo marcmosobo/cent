@@ -6,6 +6,7 @@
     <string name="login">Login</string>
     <string name="my_profile">Profile</string>
     <string name="sell">Sell</string>
+    <string name="offer_service">Offer Service</string>
     <string name="logout">Logout</string>
     <string name="about">About</string>
     <string name="share">share</string>
@@ -16,7 +17,7 @@
     <string name="home">Home</string>
     <string name="product_name">Product name</string>
     <string name="feedback">Feedback</string>
-    <string name="Welcome_to_Juggler">Welcome to Cent</string>
+    <string name="Welcome_to_Cent">Welcome to Cent</string>
     <string name="intro">A platform for students to buy and sell old goods to other students within their college.</string>
     <string name="our_team">Our Team</string>
     <string name="a">"Name    :    Archana          \nUSN       :    1SI16CS020 \nBranch  :    CSE \n"</string>
@@ -34,6 +35,16 @@
         <item>Cosmetics</item>
         <item>Clothes</item>
         <item>Shoes</item>
+        <item>Mill</item>
+    </string-array>
+    <string-array name="services">
+        <item>Transport</item>
+        <item>Mill</item>
+        <item>Grocery</item>
+        <item>Cleaning</item>
+        <item>Hairstyle abd Beauty</item>
+        <item>Cosmetics</item>
+        <item>Other</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

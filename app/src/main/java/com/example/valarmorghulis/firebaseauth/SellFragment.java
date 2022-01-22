@@ -17,13 +17,18 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.app.TimePickerDialog;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +44,8 @@ import com.squareup.picasso.Picasso;
 
 import static android.app.Activity.RESULT_OK;
 
+import java.util.Calendar;
+
 public class SellFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -46,15 +53,25 @@ public class SellFragment extends Fragment {
 
     private Button mButtonChooseImage;
     private Button mButtonUpload;
+    private Button mButtonTimePicker;
+    private Button mButtonCloseTimePicker;
     private EditText mEditTextFileName;
     private EditText mEditTextFilePrice;
+    private EditText mEditTextOpenTime;
+    private EditText mEditTextCloseTime;
+    private int mHour, mMinute;
     private ImageView mImageView;
     private TextView mDescription;
-    private TextView mCategory;
-    private TextView mLocation;
-    private TextView mOpenHours;
+    private EditText mLocation;
     private Spinner spinnerCategory;
-    private TimePicker picker;
+    private String selectedCategory;
+    private EditText location1, location2, location3, location4, location5,
+            deliverycharge1,deliveryCharge2, deliveryCharge3, deliveryCharge4, deliveryCharge5;
+    Switch delivery;
+    TextView location, textViewDelivery;
+    RadioGroup radioGroup;
+    RadioButton payBill, tillNo;
+    EditText  editPayBill,editTillNo, editPhoneNo;
     private ProgressBar mProgressBar;
     private Uri mImageUri;
     private StorageReference mStorageRef;
@@ -64,6 +81,7 @@ public class SellFragment extends Fragment {
     Uri uri;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,16 +89,36 @@ public class SellFragment extends Fragment {
 
         mButtonChooseImage = v.findViewById(R.id.button_choose_image);
         mButtonUpload = v.findViewById(R.id.button_upload);
+        mButtonTimePicker = v.findViewById(R.id.pick_time_button);
+        mButtonCloseTimePicker = v.findViewById(R.id.pick_close_time_button);
         mEditTextFileName = v.findViewById(R.id.edit_text_file_name);
         mEditTextFilePrice = v.findViewById(R.id.edit_text_file_price);
+        mEditTextOpenTime = v.findViewById(R.id.open_time);
+        mEditTextCloseTime = v.findViewById(R.id.close_time);
         mImageView = v.findViewById(R.id.image_view);
         mProgressBar = v.findViewById(R.id.progress_bar);
         mDescription = v.findViewById(R.id.Description);
         mLocation = v.findViewById(R.id.Location);
-        picker = v.findViewById(R.id.open_time);
-        picker.setIs24HourView(true);
-//        mOpenHours = v.findViewById(R.id.Openhours);
         spinnerCategory = v.findViewById(R.id.spinner_categories);
+        deliverycharge1 = v.findViewById(R.id.textViewCharge1);
+        deliveryCharge2 = v.findViewById(R.id.textViewCharge2);
+        deliveryCharge3 = v.findViewById(R.id.textViewCharge3);
+        deliveryCharge4 = v.findViewById(R.id.textViewCharge4);
+        deliveryCharge5 = v.findViewById(R.id.textViewCharge5);
+        location1 = v.findViewById(R.id.text_view_location);
+        location2 = v.findViewById(R.id.text_view_location2);
+        location3 = v.findViewById(R.id.text_view_location3);
+        location4 = v.findViewById(R.id.text_view_location4);
+        location5 = v.findViewById(R.id.text_view_location5);
+        location = v.findViewById(R.id.location_tag);
+        radioGroup = v.findViewById(R.id.groupradio);
+        payBill = v.findViewById(R.id.rb_pay_bill);
+        tillNo = v.findViewById(R.id.rb_till_no);
+        editPayBill = v.findViewById(R.id.edit_text_pay_bill);
+        editTillNo = v.findViewById(R.id.edit_text_till_no);
+        editPhoneNo = v.findViewById(R.id.edit_text_phone_no);
+        textViewDelivery = v.findViewById(R.id.delivery_tag);
+        delivery = (Switch) v.findViewById(R.id.SwitchButton);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -89,10 +127,125 @@ public class SellFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerCategory.setAdapter(adapter);
 
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCategory =parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), selectedCategory, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        radioGroup.clearCheck();
+
+        radioGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        switch(selectedId) {
+                            case R.id.rb_pay_bill:
+                                editPayBill.setVisibility(View.VISIBLE);
+                                editTillNo.setVisibility(View.GONE);
+                                editPhoneNo.setVisibility(View.GONE);
+                                if (editPayBill.getText().toString().trim().isEmpty()) {
+                                    editPayBill.setError("Paybill required");
+                                    editPayBill.requestFocus();
+                                    return;
+                                }
+                                break;
+                            case R.id.rb_till_no:
+                                editTillNo.setVisibility(View.VISIBLE);
+                                editPayBill.setVisibility(View.GONE);
+                                editPhoneNo.setVisibility(View.GONE);
+                                if (editTillNo.getText().toString().trim().isEmpty()) {
+                                    editTillNo.setError("Till number required");
+                                    editTillNo.requestFocus();
+                                    return;
+                                }
+                                break;
+                            case R.id.rb_phone_no:
+                                editPhoneNo.setVisibility(View.VISIBLE);
+                                editPayBill.setVisibility(View.GONE);
+                                editTillNo.setVisibility(View.GONE);
+                                if (editPhoneNo.getText().toString().trim().isEmpty()) {
+                                    editPhoneNo.setError("Phone number required");
+                                    editPhoneNo.requestFocus();
+                                    return;
+                                }
+                                break;
+                        }
+
+                    }
+                });
+
+        delivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    location.setVisibility(View.VISIBLE);
+                    location1.setVisibility(View.VISIBLE);
+                    location2.setVisibility(View.VISIBLE);
+                    location3.setVisibility(View.VISIBLE);
+                    location4.setVisibility(View.VISIBLE);
+                    location5.setVisibility(View.VISIBLE);
+                    deliverycharge1.setVisibility(View.VISIBLE);
+                    deliveryCharge2.setVisibility(View.VISIBLE);
+                    deliveryCharge3.setVisibility(View.VISIBLE);
+                    deliveryCharge4.setVisibility(View.VISIBLE);
+                    deliveryCharge5.setVisibility(View.VISIBLE);
+
+                    if (location1.getText().toString().trim().isEmpty()) {
+                        location1.setError("Location required");
+                        location1.requestFocus();
+                        return;
+                    }
+                    if (deliverycharge1.getText().toString().trim().isEmpty()) {
+                        deliverycharge1.setError("Amount required");
+                        deliverycharge1.requestFocus();
+                        return;
+                    }
+                }
+                else {
+                    location.setVisibility(View.GONE);
+                    location1.setVisibility(View.GONE);
+                    location2.setVisibility(View.GONE);
+                    location3.setVisibility(View.GONE);
+                    location4.setVisibility(View.GONE);
+                    location5.setVisibility(View.GONE);
+                    deliverycharge1.setVisibility(View.GONE);
+                    deliveryCharge2.setVisibility(View.GONE);
+                    deliveryCharge3.setVisibility(View.GONE);
+                    deliveryCharge4.setVisibility(View.GONE);
+                    deliveryCharge5.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        mButtonTimePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTimeChooser();
+            }
+        });
+        mButtonCloseTimePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCloseTimeChooser();
             }
         });
 
@@ -117,6 +270,21 @@ public class SellFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        location.setVisibility(View.GONE);
+        location1.setVisibility(View.GONE);
+        location2.setVisibility(View.GONE);
+        location3.setVisibility(View.GONE);
+        location4.setVisibility(View.GONE);
+        location5.setVisibility(View.GONE);
+        deliverycharge1.setVisibility(View.GONE);
+        deliveryCharge2.setVisibility(View.GONE);
+        deliveryCharge3.setVisibility(View.GONE);
+        deliveryCharge4.setVisibility(View.GONE);
+        deliveryCharge5.setVisibility(View.GONE);
+        editPayBill.setVisibility(View.GONE);
+        editTillNo.setVisibility(View.GONE);
+        editPhoneNo.setVisibility(View.GONE);
+
         NetworkConnection networkConnection = new NetworkConnection();
         if (networkConnection.isConnectedToInternet(getActivity())
                 || networkConnection.isConnectedToMobileNetwork(getActivity())
@@ -135,6 +303,45 @@ public class SellFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
+    private void openTimeChooser() {
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+                        mEditTextOpenTime.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+    }
+
+    private void openCloseTimeChooser() {
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+                        mEditTextCloseTime.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -201,6 +408,18 @@ public class SellFragment extends Fragment {
             return;
         }
 
+        if (mLocation.getText().toString().trim().isEmpty()) {
+            mLocation.setError("Location required");
+            mLocation.requestFocus();
+            return;
+        }
+
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        if (selectedId == -1) {
+            Toast.makeText(getActivity(), "No payment method has been selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (mImageUri != null) {
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -226,16 +445,45 @@ public class SellFragment extends Fragment {
                                 public void onSuccess(Uri uri) {
                                     Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
                                             uri.toString(), mEditTextFilePrice.getText().toString().trim(),
-                                            mDescription.getText().toString().trim());
+                                            mDescription.getText().toString().trim(),
+                                            mLocation.getText().toString().trim(),
+                                            mEditTextOpenTime.getText().toString(),
+                                            mEditTextCloseTime.getText().toString(),
+                                            selectedCategory.toString(),
+                                            location1.getText().toString(),
+                                            deliverycharge1.getText().toString(),
+                                            location2.getText().toString(),
+                                            deliveryCharge2.getText().toString(),
+                                            location3.getText().toString(),
+                                            deliveryCharge3.getText().toString(),
+                                            location4.getText().toString(),
+                                            deliveryCharge4.getText().toString(),
+                                            location5.getText().toString(),
+                                            deliveryCharge5.getText().toString(),
+                                            editPayBill.getText().toString(),
+                                            editTillNo.getText().toString(),
+                                            editPhoneNo.getText().toString());
                                     String uploadId = mDatabaseRef.push().getKey();
                                     mDatabaseRef.child(uploadId).setValue(upload);
                                     mEditTextFileName.setText("");
                                     mEditTextFilePrice.setText("");
                                     mDescription.setText("");
-                                    mCategory.setText("");
                                     mLocation.setText("");
-//                                    mOpenHours.setText("");
-
+                                    mEditTextOpenTime.setText("");
+                                    mEditTextCloseTime.setText("");
+                                    location1.setText("");
+                                    deliverycharge1.setText("");
+                                    location2.setText("");
+                                    deliveryCharge2.setText("");
+                                    location3.setText("");
+                                    deliveryCharge3.setText("");
+                                    location4.setText("");
+                                    deliveryCharge4.setText("");
+                                    location5.setText("");
+                                    deliveryCharge5.setText("");
+                                    editPayBill.setText("");
+                                    editTillNo.setText("");
+                                    editPhoneNo.setText("");
                                 }
                             })
                                     .addOnFailureListener(new OnFailureListener() {

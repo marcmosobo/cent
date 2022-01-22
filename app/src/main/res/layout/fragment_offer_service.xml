@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".OfferServiceFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
+        <TextView
+            android:id="@+id/Product_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imageButton5"
+            android:text="Service"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edit_text_file_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Product_tag"
+            android:layout_marginStart="65dp"
+            android:hint="Enter name"
+            android:maxLength="55"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_name"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+        <TextView
+            android:id="@+id/Image_tag"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_name"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="5dp"
+            android:text="Feature Image "
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_choose_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Image_tag"
+            android:layout_marginTop="20dp"
+
+
+            android:text="choose Image" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/button_choose_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/rupee_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            app:srcCompat="@drawable/ic_price" />
+
+        <TextView
+            android:id="@+id/Price_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/rupee_button"
+            android:text="Charge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edit_text_file_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Price_tag"
+            android:layout_marginStart="60dp"
+            android:hint="Enter Amount"
+            android:inputType="number"
+            android:maxLength="5"
+            android:maxLines="1" />
+
+        <ImageButton
+            android:id="@+id/description_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            app:srcCompat="@drawable/ic_rupee" />
+
+        <TextView
+            android:id="@+id/Description_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/description_button"
+            android:text="Description (optional) "
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Description_tag"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="15dp"
+            android:hint="Short Description"
+            android:lines="2"
+            android:maxLength="400" />
+
+        <ImageButton
+            android:id="@+id/category_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Description"
+            app:srcCompat="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/Category_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Description"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/category_button"
+            android:text="Category"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner_services"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Category_tag"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="338dp"
+            android:spinnerMode="dropdown" />
+
+        <ImageButton
+            android:id="@+id/location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            android:layout_marginTop="204dp"
+            app:srcCompat="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/Location_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="204dp"
+            android:layout_toEndOf="@id/location_button"
+            android:text="Business Location"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Description_tag"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="186dp"
+            android:layout_marginEnd="10dp"
+            android:hint="Give specific directions"
+            android:lines="2"
+            android:maxLength="400" />
+
+        <ImageButton
+            android:id="@+id/open_hours_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            android:layout_marginTop="305dp"
+            app:srcCompat="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/OpenHours_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_file_price"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="305dp"
+            android:layout_toEndOf="@id/open_hours_button"
+            android:text="Business Hours"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/open_time"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Preview picked time here"
+            app:layout_constraintEnd_toEndOf="@+id/pick_time_button"
+            app:layout_constraintStart_toStartOf="@+id/pick_time_button"
+            app:layout_constraintTop_toBottomOf="@+id/pick_time_button"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/pick_time_button"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/OpenHours_tag"
+            android:layout_marginTop="20dp"
+            android:text="PICK OPENING TIME"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/close_time"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Preview picked time here"
+            app:layout_constraintEnd_toEndOf="@+id/pick_close_time_button"
+            app:layout_constraintStart_toStartOf="@+id/pick_close_time_button"
+            app:layout_constraintTop_toBottomOf="@+id/pick_close_time_button"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/pick_close_time_button"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/OpenHours_tag"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/pick_time_button"
+            android:paddingStart="5dp"
+            android:paddingRight="10dp"
+            android:text="Close Time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/pay_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pick_time_button"
+            app:srcCompat="@drawable/ic_price" />
+
+        <TextView
+            android:id="@+id/payment_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pick_time_button"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/pay_button"
+            android:text="Payment"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payment_tag"
+            android:id="@+id/groupradio"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/rb_pay_bill"
+                android:paddingRight="10dp"
+                android:textSize="15dp"
+                android:text="Paybill"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/rb_till_no"
+                android:paddingRight="10dp"
+                android:textSize="15dp"
+                android:text="Till No"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/rb_phone_no"
+                android:paddingRight="10dp"
+                android:textSize="15dp"
+                android:text="Phone no"/>
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edit_text_pay_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/groupradio"
+            android:layout_marginStart="60dp"
+            android:hint="Enter Paybill"
+            android:inputType="number"
+            android:maxLength="8"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/edit_text_till_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_pay_bill"
+            android:layout_marginStart="60dp"
+            android:hint="Enter Till"
+            android:inputType="number"
+            android:maxLength="8"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/edit_text_phone_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_till_no"
+            android:layout_marginStart="60dp"
+            android:hint="Enter Phone No"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1" />
+
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_phone_no"
+            android:layout_marginTop="85dp"
+            android:layout_marginBottom="-4dp" />
+
+        <Button
+            android:id="@+id/button_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="159dp"
+            android:text="Upload" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

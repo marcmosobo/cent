@@ -56,14 +56,14 @@ public class HomeFragment extends Fragment {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        //mAdapter.setOnItemClickListener(ImagesActivity.this);
+//        mAdapter.setOnItemClickListener(ImagesActivity.this);
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-        Query query = mDatabaseRef.orderByChild("date");
+//        Query query = mDatabaseRef.orderByChild("date");
 
-//        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener()
-        query.addListenerForSingleValueEvent(new ValueEventListener(){
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener(){
+//        query.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

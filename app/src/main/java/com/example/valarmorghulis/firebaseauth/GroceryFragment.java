@@ -59,7 +59,7 @@ public class GroceryFragment extends Fragment {
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-        Query query=mDatabaseRef.orderByChild("name").equalTo("cat");
+        Query query=mDatabaseRef.orderByChild("category").equalTo("Grocery");
 
 //        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener()
         query.addListenerForSingleValueEvent(new ValueEventListener(){

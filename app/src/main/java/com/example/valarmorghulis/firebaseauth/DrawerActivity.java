@@ -1,5 +1,7 @@
 package com.example.valarmorghulis.firebaseauth;
 
+import static com.example.valarmorghulis.firebaseauth.R.menu.menu_toolbar;
+
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -10,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -57,7 +60,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.nav_instant_service:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new ServiceFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new ServiceFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.nav_my_profile:
@@ -65,7 +68,11 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.nav_sell:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new SellFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new SellFragment()).addToBackStack(null).commit();
+                break;
+
+            case R.id.nav_offer_service:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new OfferServiceFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.nav_logout:
@@ -79,7 +86,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.nav_feedback:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new FeedbackFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new FeedbackFragment()).addToBackStack(null).commit();
                 break;
 
 
@@ -97,5 +104,20 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.actionCart) {
+            startActivity(new Intent(DrawerActivity.this, CartActivity.class));
+            return  true;
+        }
+        drawer.openDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }
 

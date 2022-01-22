@@ -54,7 +54,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
-        holder.textViewPrice.setText("₹ " + uploadCurrent.getPrice());
+        holder.textViewPrice.setText("Ksh " + uploadCurrent.getPrice());
         Picasso.with(mContext)
                 .load(uploadCurrent.getImageUrl())
                 .placeholder(R.mipmap.ic_loading)
@@ -92,6 +92,19 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                     bundle.putInt("position", position);
                     bundle.putString("name", name);
                     bundle.putString("price", current.getPrice());
+                    bundle.putString("location", current.getLocation());
+                    bundle.putString("openTime", current.getOpenTime());
+                    bundle.putString("closeTime", current.getCloseTime());
+                    bundle.putString("location1", current.getLocation1());
+                    bundle.putString("location2", current.getLocation2());
+                    bundle.putString("location3", current.getLocation3());
+                    bundle.putString("location4", current.getLocation4());
+                    bundle.putString("location5", current.getLocation5());
+                    bundle.putString("deliveryCharge1", current.getDeliveryCharge1());
+                    bundle.putString("deliveryCharge2", current.getDeliveryCharge2());
+                    bundle.putString("deliveryCharge3", current.getDeliveryCharge3());
+                    bundle.putString("deliveryCharge4", current.getDeliveryCharge4());
+                    bundle.putString("deliveryCharge5", current.getDeliveryCharge5());
 
                     if (imageView != null)
                         bundle.putString("imageUrl", current.getImageUrl());

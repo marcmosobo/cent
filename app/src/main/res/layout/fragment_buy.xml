@@ -63,12 +63,14 @@
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="20dp" />
 
+
             <View
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/product_price"
                 android:background="?android:attr/listDivider" />
+
 
             <TextView
                 android:id="@+id/product_seller_tag"
@@ -99,7 +101,7 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/product_date_tag"
+                android:id="@+id/seller_location_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_seller_tag"
@@ -108,35 +110,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-black"
                 android:fontStyle="italic"
-                android:text="Uploaded On | "
-
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/product_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/product_seller"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_toEndOf="@+id/product_seller_tag"
-                android:fontFamily="sans-serif-black"
-                android:fontStyle="italic"
-                android:text="Date"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/seller_location_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/product_date"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-black"
-                android:fontStyle="italic"
-                android:text="Location | "
+                android:text="Pickup | "
 
                 android:textSize="15dp" />
 
@@ -144,7 +118,7 @@
                 android:id="@+id/seller_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/product_date"
+                android:layout_below="@+id/product_seller"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -155,10 +129,38 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/seller_open_hours_tag"
+                android:id="@+id/delivery_location_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seller_location_tag"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
+                android:text="Delivery | "
+
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/delivery_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/seller_location"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/delivery_location_tag"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
+                android:text="Location"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/seller_open_hours_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delivery_location_tag"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -172,21 +174,64 @@
                 android:id="@+id/seller_open_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/seller_location"
+                android:layout_below="@+id/delivery_location"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/seller_open_hours_tag"
                 android:fontFamily="sans-serif-black"
                 android:fontStyle="italic"
+                android:text="Hours - "
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/seller_close_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delivery_location"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/seller_open_hours"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
                 android:text="Hours"
                 android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/product_date_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seller_open_hours_tag"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
+                android:text="Uploaded On | "
+
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/product_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seller_open_hours"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/product_date_tag"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
+                android:text="Date"
+                android:textSize="15dp" />
+
 
             <View
                 android:id="@+id/divider3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/seller_open_hours"
+                android:layout_below="@+id/product_date"
                 android:background="?android:attr/listDivider"
             />
 
@@ -218,6 +263,262 @@
                 android:textSize="15dp"
                 android:visibility="gone" />
 
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/Description"
+                android:background="?android:attr/listDivider"
+                />
+
+            <TextView
+                android:id="@+id/Details_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider4"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-black"
+                android:fontStyle="italic"
+                android:text="Order Details"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/quantity"
+                android:layout_below="@+id/Details_tag"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/decrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:onClick="decreaseInteger"
+                    android:text="-"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/integer_number"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:text="1"
+                    android:textSize="50sp"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/increase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="increaseInteger"
+                    android:text="+"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choose"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="Select your preferred method"
+                android:layout_below="@+id/quantity"
+                android:textSize="15dp"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/choose"
+                android:id="@+id/groupradio"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/rb_pickup"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Pickup"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/rb_delivery"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Delivery"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buyer_time"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="Specify your convenient pickup time"
+                android:layout_below="@+id/groupradio"
+                android:visibility="gone"
+                android:textSize="15dp"/>
+
+            <Button
+                android:id="@+id/pickup_time_button"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buyer_time"
+                android:layout_marginLeft="20dp"
+                android:text="PICKUP TIME"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/pickup_time"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Preview pickup time here"
+                app:layout_constraintEnd_toEndOf="@+id/pickup_time_button"
+                app:layout_constraintStart_toStartOf="@+id/pickup_time_button"
+                app:layout_constraintTop_toBottomOf="@+id/pickup_time_button"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delivery_locations"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                android:text="The seller delivers to the following locations.Pick your best choice"
+                android:layout_below="@+id/pickup_time_button"
+                android:textSize="15dp"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/delivery_locations"
+                android:id="@+id/groupradio2"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:visibility="gone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="50dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/location1"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Location1"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/location2"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Location2"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/location3"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Location3"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/location4"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Location4"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/location5"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:text="Location5"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addphone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="Pay with MPESA"
+                android:layout_below="@+id/groupradio2"
+                android:textSize="15dp"/>
+
+            <EditText
+                android:id="@+id/text_view_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addphone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif"
+                android:fontStyle="italic"
+                android:hint="Phone Number"
+                android:textSize="15dp"
+                android:inputType="text|number" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/text_view_phone"
+                android:background="?android:attr/listDivider" />
+
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text=""
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="20dp" />
+
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="100dp"
+                android:layout_below="@+id/total_price"
+                android:background="?android:attr/listDivider" />
+
 
         </RelativeLayout>
 
@@ -230,7 +531,7 @@
         android:layout_alignParentBottom="true"
         android:duplicateParentState="true"
         android:paddingLeft="10dp"
-        android:text="Buy" />
+        android:text="Order" />
 
     <Button
         android:id="@+id/delete_button"

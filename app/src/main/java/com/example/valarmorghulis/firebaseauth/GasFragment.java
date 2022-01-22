@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -100,8 +101,10 @@ public class GasFragment extends Fragment {
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        Query query=mDatabaseRef.orderByChild("category").equalTo("Gas and Fuels");
 
-        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
+//        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener()
+        query.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

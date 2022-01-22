@@ -11,9 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,13 +44,14 @@ import static android.support.v7.app.AppCompatActivity.RESULT_OK;
 public class ProfileFragment extends Fragment {
 
     private static final int CHOOSE_IMAGE = 101;
-    TextView textView, textViewEmail;
+    TextView textView, textViewEmail, textView2, textViewPhone, textViewPhoneTag;
     ImageView imageView;
     EditText editText;
     Uri uriProfileImage;
     ProgressBar progressBar;
     String profileimageUrl;
     FirebaseAuth mAuth;
+    String sEmail;
     //private DatabaseReference mDatabaseRef;
 
     @Override
@@ -56,13 +61,19 @@ public class ProfileFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         editText = (EditText) v.findViewById(R.id.editTextDisplayName);
+
         imageView = (ImageView) v.findViewById(R.id.imageView);
         progressBar = v.findViewById(R.id.progressbar);
         textView = v.findViewById(R.id.textViewVerified);
         textViewEmail = v.findViewById(R.id.text_view_email);
         textViewEmail.setText(mAuth.getCurrentUser().getEmail());
+        textViewPhone = v.findViewById(R.id.text_view_phone);
+        textView2 = v.findViewById(R.id.textViewPhoneVerified);
+        textViewPhoneTag = v.findViewById(R.id.phone_tag);
 
-        //mDatabaseRef = FirebaseDatabase.getInstance().getReference("user");
+
+        //mDatabaseRef =
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +82,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         loadUserInformation();
+
 
         v.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,11 +97,19 @@ public class ProfileFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        String testEmail = mAuth.getInstance().getCurrentUser().getEmail();
+        if (testEmail.equals(sEmail)) {
+            textView2.setVisibility(View.GONE);
+            textViewPhoneTag.setVisibility(View.GONE);
+            textViewPhone.setVisibility(View.GONE);
+        }
+
         Bundle bundle = getArguments();
         if (bundle != null && bundle.getInt("seller") == 1) {
             Toast.makeText(getActivity(), "Complete your profile first", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
             /*if (mAuth.getCurrentUser() == null) {
                 getActivity().finish();
