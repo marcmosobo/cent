@@ -30,7 +30,7 @@ Cent is an android app for selling and buying of old goods within a college or i
 
 ![Signup](Screenshots/signup.png)
 
-#### 3. Email verification
+<!-- #### 3. Email verification
 
 ![Email verification](Screenshots/email_verification.png)
 
@@ -56,7 +56,7 @@ Cent is an android app for selling and buying of old goods within a college or i
 
 #### 9. Feedback
 
-![feedback](Screenshots/Feedback.jpg)
+![feedback](Screenshots/Feedback.jpg) -->
 
 
 ## Demo
